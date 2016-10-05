@@ -8,7 +8,8 @@
     "watch-browser": "webpack --watch --config webpack.config.browser.js",
     "build": "npm run browser",
     "start": "electron .",
-    "postinstall": "npm run build"
+    "postinstall": "npm run build",
+    "package": "electron-packager . --platform=darwin --arch=x64"
   },
   "author": "",
   "license": "ISC",
