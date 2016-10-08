@@ -54,8 +54,8 @@ export default class Decoder extends React.Component<DecoderProps, {}> {
 
     render() {
         let decoded = this.decode(this.props.jwt);
-        let headerInfo = this.renderHeaderInfo(decoded['header']);
-        let payloadInfo = this.renderPayloadInfo(decoded['payload']);
+        let headerInfo = decoded ? this.renderHeaderInfo(decoded['header']) : null;
+        let payloadInfo = decoded ? this.renderPayloadInfo(decoded['payload']) : null;
         return (
             <div>
                 <h2>decoder</h2>
