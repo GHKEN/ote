@@ -120,11 +120,7 @@ export default class ApiDebugger extends React.Component<{}, ApiDebuggerState> {
                 <Selector name='contentType' type='select' items={this.contentTypes} item={this.state.contentType} onChange={this.onChangeContentType}/>
                 <ApiParams onChange={this.onChangeParams} params={this.state.params}/>
                 <input type='button' value='送信' onClick={() => {this.callApi()}}/>
-                <pre style={{
-                    border: "solid 1px black",
-                    width: 500,
-                    height: 300,
-                }}>{this.state.response}</pre>
+                <pre className='textarea'>{this.state.response}</pre>
             </div>
         );
     }

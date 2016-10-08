@@ -32,16 +32,6 @@ export default class JwtDebugger extends React.Component<{}, JwtDebuggerState> {
         keyNames: KeyStorage.getKeyNames(),
     }
 
-    jwtInputStyle: React.CSSProperties = {
-        width: 500,
-        height: 100,
-    }
-
-    pubKeyInputStyle: React.CSSProperties = {
-        width: 300,
-        height: 100,
-    }
-
     onKeyChange(keyName: string) {
         let newKey = KeyStorage.get(keyName);
         this.setState({pubKey: newKey, keyName: keyName});
@@ -79,14 +69,14 @@ export default class JwtDebugger extends React.Component<{}, JwtDebuggerState> {
             <div>
                 <h1>jwt debugger</h1>
                 <h2>jwt</h2>
-                <textarea style={this.jwtInputStyle} value={this.state.jwt} onChange={this.onChangeJwt}/>
+                <textarea className='textarea' value={this.state.jwt} onChange={this.onChangeJwt}/>
                 <h2>public key</h2>
                 <Selector items={this.state.keyNames} item={this.state.keyName} type='select' name='public key' onChange={this.onKeyChange}/>
                 <input type='text' value={this.state.keyName} onChange={this.onKeyNameChange}/>
                 <input type='button' value='保存' onClick={this.onKeySave}/>
                 <input type='button' value='削除' onClick={this.onKeyRemove}/>
                 <br/>
-                <textarea style={this.pubKeyInputStyle} value={this.state.pubKey} onChange={this.onChangePubKey}/>
+                <textarea className='textarea' value={this.state.pubKey} onChange={this.onChangePubKey}/>
                 <Decoder jwt={this.state.jwt}/>
                 <Verifier jwt={this.state.jwt} pubKey={this.state.pubKey}/>
             </div>
