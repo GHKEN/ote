@@ -70,7 +70,6 @@ export default class JwtDebugger extends React.Component<{}, JwtDebuggerState> {
                 <h1>jwt debugger</h1>
                 <h2>jwt</h2>
                 <textarea className='textarea' value={this.state.jwt} onChange={this.onChangeJwt}/>
-                <h2>public key</h2>
                 <Selector items={this.state.keyNames} item={this.state.keyName} type='select' name='public key' onChange={this.onKeyChange}/>
                 <input type='text' value={this.state.keyName} onChange={this.onKeyNameChange}/>
                 <input type='button' value='保存' onClick={this.onKeySave}/>
