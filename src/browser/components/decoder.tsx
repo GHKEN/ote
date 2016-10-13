@@ -12,6 +12,10 @@ export default class Decoder extends React.Component<DecoderProps, {}> {
         return decoded;
     }
 
+    private timestampToDateTime(timestamp: number): string {
+        return (new Date(timestamp * 1000)).toLocaleString();
+    }
+
     renderHeaderInfo(jwtHeader: Object) {
         let headerInfoTable = this.renderKeyValeTable(jwtHeader);
         return (
@@ -35,10 +39,14 @@ export default class Decoder extends React.Component<DecoderProps, {}> {
     renderKeyValeTable(keyValueObject: Object) {
         let rows: JSX.Element[] = [];
         for (let key in keyValueObject) {
+            let moreInfo = '';
+            if (['iat', 'exp'].indexOf(key) !== -1) {
+                moreInfo = '(' + this.timestampToDateTime(Number(JSON.stringify(keyValueObject[key]))) + ')';
+            }
             let row: JSX.Element = (
                 <tr key={key}>
                     <th>{key}</th>
-                    <td>{JSON.stringify(keyValueObject[key])}</td>
+                    <td>{JSON.stringify(keyValueObject[key]) + moreInfo}</td>
                 </tr>
             );
             rows.push(row);
