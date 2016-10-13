@@ -111,16 +111,20 @@ export default class ApiDebugger extends React.Component<{}, ApiDebuggerState> {
         return (
             <div>
                 <h1>api debugger</h1>
-                <label>token: <input type='text' value={this.state.token} onChange={this.onChangeToken}/></label>
-                <br/>
-                <label>url: <input type='text' value={this.state.url} onChange={this.onChangeUrl}/></label>
-                <br/>
-                <Selector name='method' type='radio' items={this.methods} item={this.state.method} onChange={this.onChangeMethod}/>
-                <br/>
-                <Selector name='contentType' type='select' items={this.contentTypes} item={this.state.contentType} onChange={this.onChangeContentType}/>
-                <ApiParams onChange={this.onChangeParams} params={this.state.params}/>
-                <input type='button' value='送信' onClick={() => {this.callApi()}}/>
-                <pre className='textarea'>{this.state.response}</pre>
+                <div className='half'>
+                    <label>token: <input type='text' value={this.state.token} onChange={this.onChangeToken}/></label>
+                    <br/>
+                    <label>url: <input type='text' value={this.state.url} onChange={this.onChangeUrl}/></label>
+                    <br/>
+                    <Selector name='method' type='radio' items={this.methods} item={this.state.method} onChange={this.onChangeMethod}/>
+                    <br/>
+                    <Selector name='contentType' type='select' items={this.contentTypes} item={this.state.contentType} onChange={this.onChangeContentType}/>
+                    <ApiParams onChange={this.onChangeParams} params={this.state.params}/>
+                    <input type='button' value='送信' onClick={() => {this.callApi()}}/>
+                </div>
+                <div className='half'>
+                    <pre className='border'>{this.state.response}</pre>
+                </div>
             </div>
         );
     }

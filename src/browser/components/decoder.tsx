@@ -17,26 +17,14 @@ export default class Decoder extends React.Component<DecoderProps, {}> {
     }
 
     renderHeaderInfo(jwtHeader: Object) {
-        let headerInfoTable = this.renderKeyValeTable(jwtHeader);
-        return (
-            <div>
-                <h3>header</h3>
-                {headerInfoTable}
-            </div>
-        );
+        return this.renderKeyValeTable('header', jwtHeader);
     }
 
     renderPayloadInfo(jwtPayload: Object) {
-        let payloadInfoTable = this.renderKeyValeTable(jwtPayload);
-        return (
-            <div>
-                <h3>payload</h3>
-                {payloadInfoTable}
-            </div>
-        );
+        return this.renderKeyValeTable('payload', jwtPayload);
     }
 
-    renderKeyValeTable(keyValueObject: Object) {
+    renderKeyValeTable(caption: string, keyValueObject: Object) {
         let rows: JSX.Element[] = [];
         for (let key in keyValueObject) {
             let moreInfo = '';
@@ -45,14 +33,15 @@ export default class Decoder extends React.Component<DecoderProps, {}> {
             }
             let row: JSX.Element = (
                 <tr key={key}>
-                    <th>{key}</th>
-                    <td>{JSON.stringify(keyValueObject[key]) + moreInfo}</td>
+                    <th className='border'>{key}</th>
+                    <td className='border'>{JSON.stringify(keyValueObject[key]) + moreInfo}</td>
                 </tr>
             );
             rows.push(row);
         }
         return (
             <table>
+                <caption>{caption}</caption>
                 <tbody>
                     {rows}
                 </tbody>
@@ -67,8 +56,10 @@ export default class Decoder extends React.Component<DecoderProps, {}> {
         return (
             <div>
                 <h2>decoder</h2>
-                {headerInfo}
-                {payloadInfo}
+                <div className='border'>
+                    {headerInfo}
+                    {payloadInfo}
+                </div>
             </div>
         );
     }

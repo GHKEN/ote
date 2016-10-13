@@ -18,8 +18,10 @@ export default class Verifier extends React.Component<VerifierProps, {}> {
         return (
             <div>
                 <h2>verifier</h2>
-                <div>{res['isValid'].toString()}</div>
-                <div>{res['err']}</div>
+                <div className='border'>
+                    <p className='alignCenter'>{res['isValid'].toString()}</p>
+                    <p className='alignCenter'>{res['err']}</p>
+                </div>
             </div>
         );
     }

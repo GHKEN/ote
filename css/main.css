@@ -1,25 +1,54 @@
 * {
     font-family: 'メイリオ';
-    margin: 0;
-    padding: 0;
+    color: #dddddd;
+}
+
+body {
+    background-color: #222222;
+}
+
+.half {
+    display: inline-block;
+    width: 50%;
+    vertical-align: top;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.alignCenter {
+    text-align: center;
+}
+
+.border {
+    border: solid 1px #dddddd;
+    min-height: 10px;
 }
 
 .textarea {
-    width: 800px;
     height: 200px;
-    border: solid 1px black;
+    width: 100%;
+    background-color: #222222;
+    color: #dddddd;
 }
 
 .tabs .tab {
     display: inline-block;
     width: 200px;
-    padding: 5px;
-    background-color: gainsboro;
-    color: dimgray;
     text-align: center;
+    background-color: dimgray;
+    color: white;
 }
 
 .tabs .tab.active {
-    background-color: dimgray;
-    color: white;
+    background-color: gainsboro;
+    color: dimgray;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+table {
+    border-collapse: collapse;
+    margin: 0 auto;
 }

@@ -68,16 +68,20 @@ export default class JwtDebugger extends React.Component<{}, JwtDebuggerState> {
         return (
             <div>
                 <h1>jwt debugger</h1>
-                <h2>jwt</h2>
-                <textarea className='textarea' value={this.state.jwt} onChange={this.onChangeJwt}/>
-                <Selector items={this.state.keyNames} item={this.state.keyName} type='select' name='public key' onChange={this.onKeyChange}/>
-                <input type='text' value={this.state.keyName} onChange={this.onKeyNameChange}/>
-                <input type='button' value='保存' onClick={this.onKeySave}/>
-                <input type='button' value='削除' onClick={this.onKeyRemove}/>
-                <br/>
-                <textarea className='textarea' value={this.state.pubKey} onChange={this.onChangePubKey}/>
-                <Decoder jwt={this.state.jwt}/>
-                <Verifier jwt={this.state.jwt} pubKey={this.state.pubKey}/>
+                <div className='half'>
+                    <h2>jwt</h2>
+                    <textarea className='textarea w400' value={this.state.jwt} onChange={this.onChangeJwt}/>
+                    <Selector items={this.state.keyNames} item={this.state.keyName} type='select' name='public key' onChange={this.onKeyChange}/>
+                    <input type='text' value={this.state.keyName} onChange={this.onKeyNameChange}/>
+                    <input type='button' value='保存' onClick={this.onKeySave}/>
+                    <input type='button' value='削除' onClick={this.onKeyRemove}/>
+                    <br/>
+                    <textarea className='textarea w400' value={this.state.pubKey} onChange={this.onChangePubKey}/>
+                </div>
+                <div className='half'>
+                    <Decoder jwt={this.state.jwt}/>
+                    <Verifier jwt={this.state.jwt} pubKey={this.state.pubKey}/>
+                </div>
             </div>
         );
     }
