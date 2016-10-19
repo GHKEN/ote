@@ -78,23 +78,28 @@ export default class ApiDebugger extends React.Component<{}, ApiDebuggerState> {
         if (this.state.method != 'get') {
             return this.state.url;
         }
-        let query = this.state.params.map((param) => {
+        let query = this.state.params.filter((param) => {
+            return param['key'] != '';
+        }).map((param) => {
             return param.key + '=' + param.value;
         }).join('&');
         return this.state.url + '?' + query;
     }
 
     getParams(): string | FormData {
+        let validParams = this.state.params.filter((param) => {
+            return param['key'] != '';
+        });
         switch (this.state.contentType) {
             case 'application/json':
                 let params = new Object();
-                this.state.params.forEach((param) => {
+                validParams.forEach((param) => {
                     params[param['key']] = param['value'];
                 });
                 return JSON.stringify(params);
             case 'application/x-www-form-urlencoded':
                 let formData = new FormData();
-                this.state.params.forEach((param) => {
+                validParams.forEach((param) => {
                     formData.append(param['key'], param['value']);
                 });
                 return formData;
@@ -112,17 +117,20 @@ export default class ApiDebugger extends React.Component<{}, ApiDebuggerState> {
             <div>
                 <h1>api debugger</h1>
                 <div className='half'>
-                    <label>token: <input type='text' value={this.state.token} onChange={this.onChangeToken}/></label>
-                    <br/>
-                    <label>url: <input type='text' value={this.state.url} onChange={this.onChangeUrl}/></label>
-                    <br/>
-                    <Selector name='method' type='radio' items={this.methods} item={this.state.method} onChange={this.onChangeMethod}/>
-                    <br/>
-                    <Selector name='contentType' type='select' items={this.contentTypes} item={this.state.contentType} onChange={this.onChangeContentType}/>
-                    <ApiParams onChange={this.onChangeParams} params={this.state.params}/>
-                    <input type='button' value='送信' onClick={() => {this.callApi()}}/>
+                    <h2>request</h2>
+                    <div className='alignCenter'>
+                        <h3>url</h3>
+                        <input className='wMax' type='text' value={this.state.url} onChange={this.onChangeUrl}/>
+                        <h3>token</h3>
+                        <input className='wMax' type='text' value={this.state.token} onChange={this.onChangeToken}/>
+                        <Selector name='method' type='select' items={this.methods} item={this.state.method} onChange={this.onChangeMethod}/>
+                        <Selector name='contentType' type='select' items={this.contentTypes} item={this.state.contentType} onChange={this.onChangeContentType}/>
+                        <ApiParams onChange={this.onChangeParams} params={this.state.params}/>
+                        <input type='button' value='send' onClick={() => {this.callApi()}}/>
+                    </div>
                 </div>
                 <div className='half'>
+                    <h2>response</h2>
                     <pre className='border'>{this.state.response}</pre>
                 </div>
             </div>

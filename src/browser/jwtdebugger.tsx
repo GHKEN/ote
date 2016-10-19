@@ -71,12 +71,14 @@ export default class JwtDebugger extends React.Component<{}, JwtDebuggerState> {
                 <div className='half'>
                     <h2>jwt</h2>
                     <textarea className='textarea w400' value={this.state.jwt} onChange={this.onChangeJwt}/>
-                    <Selector items={this.state.keyNames} item={this.state.keyName} type='select' name='public key' onChange={this.onKeyChange}/>
-                    <input type='text' value={this.state.keyName} onChange={this.onKeyNameChange}/>
-                    <input type='button' value='保存' onClick={this.onKeySave}/>
-                    <input type='button' value='削除' onClick={this.onKeyRemove}/>
-                    <br/>
-                    <textarea className='textarea w400' value={this.state.pubKey} onChange={this.onChangePubKey}/>
+                    <div className='alignCenter'>
+                        <Selector items={this.state.keyNames} item={this.state.keyName} type='select' name='public key' onChange={this.onKeyChange}/>
+                        <input type='text' value={this.state.keyName} onChange={this.onKeyNameChange}/>
+                        <input type='button' value='save' onClick={this.onKeySave}/>
+                        <input type='button' value='delete' onClick={this.onKeyRemove}/>
+                        <br/>
+                        <textarea className='textarea w400' value={this.state.pubKey} onChange={this.onChangePubKey}/>
+                    </div>
                 </div>
                 <div className='half'>
                     <Decoder jwt={this.state.jwt}/>

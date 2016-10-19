@@ -40,15 +40,18 @@ export default class ApiParams extends React.Component<ApiParamsProps, {}> {
     }
 
     private renderParams(params: {key: string, value: any}[]) {
-        return params.map((param, index) => {
+        let rows = params.map((param, index) => {
+            let addButton = (index == params.length - 1) ? <td><input type='button' onClick={() => {this.addParam()}} value='add'/></td> : null;
             return (
-                <div key={index}>
-                    <label>key: <input value={param.key} type='text' onChange={this.buildParamKeyOnChange(index)}/></label>
-                    <label>value: <input key='value' value={param.value} type='text' onChange={this.buildParamValueOnChange(index)}/></label>
-                    <input type='button' onClick={this.buildDeleteParam(index)} value='削除'/>
-                </div>
+                <tr key={index}>
+                    <td><input value={param.key} type='text' onChange={this.buildParamKeyOnChange(index)}/></td>
+                    <td><input key='value' value={param.value} type='text' onChange={this.buildParamValueOnChange(index)}/></td>
+                    <td><input type='button' onClick={this.buildDeleteParam(index)} value='delete'/></td>
+                    {addButton}
+                </tr>
             );
         });
+        return rows;
     }
 
     private addParam() {
@@ -60,11 +63,20 @@ export default class ApiParams extends React.Component<ApiParamsProps, {}> {
     render() {
         let params = this.renderParams(this.props.params);
         return (
-            <form>
+            <div>
                 <h2>params</h2>
-                {params}
-                <input type='button' onClick={() => {this.addParam()}} value='追加'/>
-            </form>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>key</th>
+                            <th>value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {params}
+                    </tbody>
+                </table>
+            </div>
         );
     }
 }
