@@ -1,5 +1,5 @@
 * {
-    font-family: 'メイリオ';
+    font-family: 'Open Sans', 'メイリオ', sans-serif;
     color: #dddddd;
 }
 
@@ -51,4 +51,12 @@ h1, h2 {
 table {
     border-collapse: collapse;
     margin: 0 auto;
+}
+
+input, select {
+    margin: 0 5px 5px 0;
+}
+
+select {
+    width: 100px;
 }
